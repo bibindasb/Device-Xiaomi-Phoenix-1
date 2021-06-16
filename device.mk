@@ -51,7 +51,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.atrace@1.0-service
 
-# Audio
+
+# Device properties
+include $(LOCAL_PATH)/device_prop.mk
+
+# Device Settings
 PRODUCT_PACKAGES += \
     android.hardware.audio.common@4.0 \
     android.hardware.audio.common@4.0-util \

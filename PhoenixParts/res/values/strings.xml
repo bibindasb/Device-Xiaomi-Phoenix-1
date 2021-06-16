@@ -20,15 +20,6 @@
 
     <string name="display_title">Display</string>
 
-    <!-- Redmi K30 / POCO X2 specific settings -->
-    <string name="device_refresh_rate">DISPLAY REFRESH RATE</string>
-    <string name="device_min_refresh_rate">Minimum refresh rate</string>
-    <string name="device_power_save_refresh_rate">Battery saver refresh rate</string>
-    <string name="device_power_save_refresh_rate_switch">Automatically lower refresh rate when battery saver is active</string>
-    <string name="refresh_rate_tile_title">Refresh Rate</string>
-    <string name="refresh_rate_tile_disabled">Battery saver enabled</string>
-
-    
     <!-- KCal -->
     <string name="device_kcal_title">Display Color Calibration</string>
     <string name="kcal_enabled_summary">Calibrate Display Using KCAL</string>
