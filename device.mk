@@ -503,7 +503,10 @@ PRODUCT_PACKAGES += \
     fstab.emmc \
     ueventd.qcom.rc
 
-# RIL
+# Power
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/power/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+
 PRODUCT_PACKAGES += \
     android.hardware.radio.config@1.1 \
     android.hardware.radio@1.5 \
