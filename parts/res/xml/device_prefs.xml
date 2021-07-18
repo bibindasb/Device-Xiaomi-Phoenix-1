@@ -40,7 +40,6 @@
             android:entryValues="@array/device_power_save_refresh_rates_val"
             android:defaultValue="2" />
 
-    </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/device_cutout_title">
@@ -50,10 +49,3 @@
             android:title="@string/device_pill_style_notch"/>
 
     </PreferenceCategory>
-
-</PreferenceScreen>
-     <SwitchPreference
-        android:key="pref_pill_style_notch"
-        android:title="@string/device_pill_style_notch"/>
-        
-</PreferenceScreen>
