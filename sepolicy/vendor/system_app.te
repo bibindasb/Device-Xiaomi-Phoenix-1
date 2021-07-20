@@ -1,0 +1,13 @@
+# Kcal
+allow system_app kcal_dev:file rw_file_perms;
+allow system_app kcal_dev:dir search;
+
+
+
+# High Brightness Mode
+#allow system_app sysfs_dm:file rw_file_perms;
+
+# Fps Info
+allow system_app vendor_sysfs_graphics:file { getattr open read }; 
+
+get_prop(system_app, vendor_default_prop)

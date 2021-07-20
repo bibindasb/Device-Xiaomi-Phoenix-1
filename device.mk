@@ -183,8 +183,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := verify
 
 # Device Settings
-#PRODUCT_PACKAGES += \
-
+PRODUCT_PACKAGES += \
+    PhoenixParts
+		
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/PhoenixParts/privapp-permissions-parts.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-parts.xml		
+			
+	# PhoenixParts init
+PRODUCT_PACKAGES += \
+    init.phoenixparts.sh \
+    init.phoenixparts.rc
 
 # Display/Graphics
 PRODUCT_PACKAGES += \
@@ -394,20 +402,12 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_phoenix/com.nxp.mifare.xml
 
 
-# Notch style overlay
-PRODUCT_PACKAGES += \
-    NotchNoFillOverlay
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay
 
-# Overlays - override vendor ones
-PRODUCT_PACKAGES += \
-    FrameworksResCommon \
-    FrameworksResTarget \
-    DevicesOverlay \
-    DevicesAndroidOverlay
+
 
 # Permissions
 PRODUCT_COPY_FILES += \
