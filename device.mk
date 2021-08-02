@@ -194,6 +194,11 @@ PRODUCT_PACKAGES += \
     init.phoenixparts.sh \
     init.phoenixparts.rc
 
+# LiveDisplay native
+PRODUCT_PACKAGES += \
+    vendor.lineage.livedisplay@2.0-service-sdm
+
+
 # Display/Graphics
 PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.4-service \
