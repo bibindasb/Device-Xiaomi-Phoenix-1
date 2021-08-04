@@ -14,6 +14,7 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # Get non-open-source specific aspects
 $(call inherit-product, vendor/xiaomi/phoenix/phoenix-vendor.mk)
 $(call inherit-product, vendor/xiaomi/google/google.mk)
+$(call inherit-product, vendor/xiaomi/miuicamera/config.mk)
 
 # Include PSU if synced
 $(call inherit-product-if-exists, vendor/google/psu/google-psu.mk)
@@ -412,8 +413,8 @@ PRODUCT_COPY_FILES += \
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay
-
+    $(LOCAL_PATH)/overlay \
+    $(LOCAL_PATH)/overlay-ancient
 
 
 # Permissions
