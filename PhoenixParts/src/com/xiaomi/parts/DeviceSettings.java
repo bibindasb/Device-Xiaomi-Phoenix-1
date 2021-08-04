@@ -23,8 +23,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SELinux;
 import android.os.Handler;
-import android.content.om.IOverlayManager;
-import android.content.om.OverlayInfo;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import androidx.preference.PreferenceFragment;
@@ -41,7 +39,6 @@ import com.xiaomi.parts.speaker.ClearSpeakerActivity;
 import com.xiaomi.parts.preferences.CustomSeekBarPreference;
 import com.xiaomi.parts.preferences.SecureSettingListPreference;
 import com.xiaomi.parts.preferences.SecureSettingSwitchPreference;
-import com.xiaomi.parts.utils.RefreshRateUtils;
 import com.xiaomi.parts.SuShell;
 import com.xiaomi.parts.SuTask;
 
@@ -67,8 +64,7 @@ public class DeviceSettings extends PreferenceFragment implements
 
     private static final String PREF_CLEAR_SPEAKER = "clear_speaker_settings";
 
-    private static final String OVERLAY_NO_FILL_PACKAGE = "org.lineageos.overlay.notch.nofill";
-    private static final String KEY_PILL_STYLE_NOTCH = "pref_pill_style_notch";
+
 
     public static final String PREF_MSM_TOUCHBOOST = "touchboost";
     public static final String MSM_TOUCHBOOST_PATH = "/sys/module/msm_performance/parameters/touchboost";
@@ -85,25 +81,20 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingListPreference mHeadsetType;
     private SecureSettingListPreference mPreset;
     private SecureSettingSwitchPreference mFastcharge;
-    
-	  private IOverlayManager mOverlayService;
-    private SwitchPreference mPrefPillStyleNotch;
 
-   
+
+
     private SwitchPreference mSelinuxMode;
     private SwitchPreference mSelinuxPersistence;
 
     private static Context mContext;
-    
-               
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences_phoenix_parts, rootKey);
         mContext = this.getContext();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-        
-        mPrefPillStyleNotch = (SwitchPreference) findPreference(KEY_PILL_STYLE_NOTCH);
-        
+            
         
         String device = FileUtils.getStringProp("ro.build.product", "unknown");
 
@@ -117,7 +108,7 @@ public class DeviceSettings extends PreferenceFragment implements
             return true;
         });
 
-        mOverlayService = IOverlayManager.Stub.asInterface(ServiceManager.getService("overlay"));
+        
         mClearSpeakerPref = (Preference) findPreference(PREF_CLEAR_SPEAKER);
         mClearSpeakerPref.setOnPreferenceClickListener(preference -> {
             Intent intent = new Intent(getActivity().getApplicationContext(), ClearSpeakerActivity.class);
