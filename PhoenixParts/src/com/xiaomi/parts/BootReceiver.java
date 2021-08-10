@@ -24,6 +24,7 @@ import android.content.SharedPreferences;
 import androidx.preference.PreferenceManager;
 import android.provider.Settings;
 import android.content.SharedPreferences;
+import com.xiaomi.parts.preferences.VibratorStrengthPreference;
 import android.os.SELinux;
 import android.util.Log;
 import android.widget.Toast;
@@ -123,6 +124,7 @@ public class BootReceiver extends BroadcastReceiver implements Utils {
                     PREF_CONTRAST, CONTRAST_DEFAULT) + CONTRAST_OFFSET);
             FileUtils.setValue(KCAL_HUE, Settings.Secure.getInt(context.getContentResolver(),
                     PREF_HUE, HUE_DEFAULT));
+                    VibratorStrengthPreference.restore(context);
         }
 
         FileUtils.setValue(DeviceSettings.USB_FASTCHARGE_PATH, Settings.Secure.getInt(context.getContentResolver(),

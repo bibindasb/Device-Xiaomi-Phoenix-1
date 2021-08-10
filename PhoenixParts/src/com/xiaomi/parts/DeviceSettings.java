@@ -39,6 +39,7 @@ import com.xiaomi.parts.speaker.ClearSpeakerActivity;
 import com.xiaomi.parts.preferences.CustomSeekBarPreference;
 import com.xiaomi.parts.preferences.SecureSettingListPreference;
 import com.xiaomi.parts.preferences.SecureSettingSwitchPreference;
+import com.xiaomi.parts.preferences.VibratorStrengthPreference;
 import com.xiaomi.parts.SuShell;
 import com.xiaomi.parts.SuTask;
 
@@ -50,6 +51,7 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String CATEGORY_DISPLAY = "display";
     public static final String PREF_DEVICE_KCAL = "device_kcal";
     
+    public static final String KEY_VIBSTRENGTH = "vib_strength";
 
 	
 	
@@ -72,8 +74,8 @@ public class DeviceSettings extends PreferenceFragment implements
     private static final String SELINUX_CATEGORY = "selinux";
     private static final String PREF_SELINUX_MODE = "selinux_mode";
     private static final String PREF_SELINUX_PERSISTENCE = "selinux_persistence";
-
-
+    
+    
     private Preference mKcal;
     private Preference mClearSpeakerPref;
     private Preference mAmbientPref;
@@ -81,8 +83,7 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingListPreference mHeadsetType;
     private SecureSettingListPreference mPreset;
     private SecureSettingSwitchPreference mFastcharge;
-
-
+    private VibratorStrengthPreference mVibratorStrength;
 
     private SwitchPreference mSelinuxMode;
     private SwitchPreference mSelinuxPersistence;
@@ -97,7 +98,12 @@ public class DeviceSettings extends PreferenceFragment implements
             
         
         String device = FileUtils.getStringProp("ro.build.product", "unknown");
-
+        
+        mVibratorStrength = (VibratorStrengthPreference) findPreference(KEY_VIBSTRENGTH);
+        if (mVibratorStrength != null) {
+            mVibratorStrength.setEnabled(VibratorStrengthPreference.isSupported());
+        } 
+                
         PreferenceCategory displayCategory = (PreferenceCategory) findPreference(CATEGORY_DISPLAY);
 
         mKcal = findPreference(PREF_DEVICE_KCAL);
@@ -152,7 +158,7 @@ public class DeviceSettings extends PreferenceFragment implements
         SwitchPreference fpsInfo = (SwitchPreference) findPreference(PREF_KEY_FPS_INFO);
         fpsInfo.setChecked(prefs.getBoolean(PREF_KEY_FPS_INFO, false));
         fpsInfo.setOnPreferenceChangeListener(this);
-
+      
         // SELinux
         Preference selinuxCategory = findPreference(SELINUX_CATEGORY);
         mSelinuxMode = (SwitchPreference) findPreference(PREF_SELINUX_MODE);
@@ -188,6 +194,7 @@ public class DeviceSettings extends PreferenceFragment implements
                     DiracService.sDiracUtils.setHeadsetType(Integer.parseInt(value.toString()));
                 }
                 break;
+                
 
             case PREF_PRESET:
                 try {
@@ -206,7 +213,7 @@ public class DeviceSettings extends PreferenceFragment implements
                 } else {
                     this.getContext().stopService(fpsinfo);
                 }
-                break;
+                break;             
 
             case PREF_SELINUX_MODE:
                   if (preference == mSelinuxMode) {
